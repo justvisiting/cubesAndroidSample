@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/smart_watch_2_control_width"
+    android:layout_height="@dimen/smart_watch_2_control_height"
+    tools:ignore="PxUsage,UselessParent,HardcodedText" >
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="48px"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:background="@android:color/background_dark" >
+	
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="25px"
+            android:paddingLeft="6px"
+            android:background="@color/smart_watch_2_text_color_orange"
+            android:text="Below is a list 1"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/smart_watch_2_text_size_medium"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="6px"
+            android:text="Below is a list 2"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/smart_watch_2_text_size_medium"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header" >
+    </ListView>
+
+</RelativeLayout>
