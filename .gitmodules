@@ -1,0 +1,3 @@
+[submodule "dependensies"]
+	path = dependensies
+	url = git@github.com:justvisiting/cubesAndroidSDK.git
