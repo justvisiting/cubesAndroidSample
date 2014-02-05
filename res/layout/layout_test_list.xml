@@ -5,39 +5,18 @@
     android:layout_height="@dimen/smart_watch_2_control_height"
     tools:ignore="PxUsage,UselessParent,HardcodedText" >
 
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="48px"
+    <ImageView
+        android:id="@+id/ads_container_list"
+        android:layout_width="@dimen/ads_multipart_bar_image_width"
+        android:layout_height="@dimen/ads_multipart_bar_image_height"
         android:layout_alignParentTop="true"
-        android:orientation="vertical"
-        android:background="@android:color/background_dark" >
-	
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="25px"
-            android:paddingLeft="6px"
-            android:background="@color/smart_watch_2_text_color_orange"
-            android:text="Below is a list 1"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/smart_watch_2_text_size_medium"
-            android:textStyle="bold" />
-        
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="6px"
-            android:text="Below is a list 2"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/smart_watch_2_text_size_medium"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:clickable="true" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/header" >
+        android:layout_below="@+id/ads_container_list" >
     </ListView>
 
 </RelativeLayout>
