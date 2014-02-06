@@ -31,11 +31,11 @@
         
         <service
             android:name="com.cubes.cubesandroidsdk.service.AdsManagerService"
-            android:enabled="true"
-            android:exported="true" >
+            android:enabled="true" >
         </service>
         
-        <receiver android:name="com.cubes.cubesandroidsdk.adsmanager.ClickReceiver">
+        <receiver android:name="com.cubes.cubesandroidsdk.adsmanager.ClickReceiver"
+            android:enabled="true">
             <intent-filter >
                 <action android:name="com.cubes.cubesandroidsdk.adsclickevent"/>
             </intent-filter>
