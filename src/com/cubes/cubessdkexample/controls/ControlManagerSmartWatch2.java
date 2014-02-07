@@ -56,183 +56,203 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlObjectClic
  */
 public class ControlManagerSmartWatch2 extends ControlManagerBase {
 
-    private Stack<Intent> mControlStack;
+	private Stack<Intent> mControlStack;
 
-    public ControlManagerSmartWatch2(Context context, String packageName) {
-        super(context, packageName);
-        mControlStack = new Stack<Intent>();
-        // Create an initial control extension
-        Intent initialListControlIntent = new Intent(mContext, ListControlExtension.class);
-        mCurrentControl = createControl(initialListControlIntent);
-    }
+	public ControlManagerSmartWatch2(Context context, String packageName) {
+		super(context, packageName);
+		mControlStack = new Stack<Intent>();
+		// Create an initial control extension
+		Intent initialListControlIntent = new Intent(mContext,
+				ListControlExtension.class);
+		mCurrentControl = createControl(initialListControlIntent);
+	}
 
-    /**
-     * Get supported control width.
-     *
-     * @param context The context.
-     * @return the width.
-     */
-    public static int getSupportedControlWidth(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.smart_watch_2_control_width);
-    }
+	/**
+	 * Get supported control width.
+	 * 
+	 * @param context
+	 *            The context.
+	 * @return the width.
+	 */
+	public static int getSupportedControlWidth(Context context) {
+		return context.getResources().getDimensionPixelSize(
+				R.dimen.smart_watch_2_control_width);
+	}
 
-    /**
-     * Get supported control height.
-     *
-     * @param context The context.
-     * @return the height.
-     */
-    public static int getSupportedControlHeight(Context context) {
-        return context.getResources().getDimensionPixelSize(R.dimen.smart_watch_2_control_height);
-    }
+	/**
+	 * Get supported control height.
+	 * 
+	 * @param context
+	 *            The context.
+	 * @return the height.
+	 */
+	public static int getSupportedControlHeight(Context context) {
+		return context.getResources().getDimensionPixelSize(
+				R.dimen.smart_watch_2_control_height);
+	}
 
-    @Override
-    public void onRequestListItem(int layoutReference, int listItemPosition) {
-        Log.v(SampleExtensionService.LOG_TAG, "onRequestListItem");
-        if (mCurrentControl != null) {
-            mCurrentControl.onRequestListItem(layoutReference, listItemPosition);
-        }
-    }
+	@Override
+	public void onRequestListItem(int layoutReference, int listItemPosition) {
+		Log.v(SampleExtensionService.LOG_TAG, "onRequestListItem");
+		if (mCurrentControl != null) {
+			mCurrentControl
+					.onRequestListItem(layoutReference, listItemPosition);
+		}
+	}
 
-    @Override
-    public void onListItemClick(ControlListItem listItem, int clickType, int itemLayoutReference) {
-        Log.v(SampleExtensionService.LOG_TAG, "onListItemClick");
-        if (mCurrentControl != null) {
-            mCurrentControl.onListItemClick(listItem, clickType, itemLayoutReference);
-        }
-    }
+	@Override
+	public void onListItemClick(ControlListItem listItem, int clickType,
+			int itemLayoutReference) {
+		Log.v(SampleExtensionService.LOG_TAG, "onListItemClick");
+		if (mCurrentControl != null) {
+			mCurrentControl.onListItemClick(listItem, clickType,
+					itemLayoutReference);
+		}
+	}
 
-    @Override
-    public void onListItemSelected(ControlListItem listItem) {
-        Log.v(SampleExtensionService.LOG_TAG, "onListItemSelected");
-        if (mCurrentControl != null) {
-            mCurrentControl.onListItemSelected(listItem);
-        }
-    }
+	@Override
+	public void onListItemSelected(ControlListItem listItem) {
+		Log.v(SampleExtensionService.LOG_TAG, "onListItemSelected");
+		if (mCurrentControl != null) {
+			mCurrentControl.onListItemSelected(listItem);
+		}
+	}
 
-    @Override
-    public void onListRefreshRequest(int layoutReference) {
-        Log.v(SampleExtensionService.LOG_TAG, "onListRefreshRequest");
-        if (mCurrentControl != null) {
-            mCurrentControl.onListRefreshRequest(layoutReference);
-        }
-    }
+	@Override
+	public void onListRefreshRequest(int layoutReference) {
+		Log.v(SampleExtensionService.LOG_TAG, "onListRefreshRequest");
+		if (mCurrentControl != null) {
+			mCurrentControl.onListRefreshRequest(layoutReference);
+		}
+	}
 
-    @Override
-    public void onObjectClick(ControlObjectClickEvent event) {
-        Log.v(SampleExtensionService.LOG_TAG, "onObjectClick");
-        if (mCurrentControl != null) {
-            mCurrentControl.onObjectClick(event);
-        }
-    }
+	@Override
+	public void onObjectClick(ControlObjectClickEvent event) {
+		Log.v(SampleExtensionService.LOG_TAG, "onObjectClick");
+		if (mCurrentControl != null) {
+			mCurrentControl.onObjectClick(event);
+		}
+	}
 
-    @Override
-    public void onKey(int action, int keyCode, long timeStamp) {
-        Log.v(SampleExtensionService.LOG_TAG, "onKey");
+	@Override
+	public void onKey(int action, int keyCode, long timeStamp) {
+		Log.v(SampleExtensionService.LOG_TAG, "onKey");
 
-        if (action == Control.Intents.KEY_ACTION_RELEASE
-                && keyCode == Control.KeyCodes.KEYCODE_BACK) {
-            Log.d(SampleExtensionService.LOG_TAG, "onKey() - back button intercepted.");
-            onBack();
-        } else if (mCurrentControl != null) {
-            super.onKey(action, keyCode, timeStamp);
-        }
-    }
+		if (action == Control.Intents.KEY_ACTION_RELEASE
+				&& keyCode == Control.KeyCodes.KEYCODE_BACK) {
+			Log.d(SampleExtensionService.LOG_TAG,
+					"onKey() - back button intercepted.");
+			onBack();
+		} else if (mCurrentControl != null) {
+			super.onKey(action, keyCode, timeStamp);
+		}
+	}
 
-    @Override
-    public void onMenuItemSelected(int menuItem) {
-        Log.v(SampleExtensionService.LOG_TAG, "onMenuItemSelected");
-        if (mCurrentControl != null) {
-            mCurrentControl.onMenuItemSelected(menuItem);
-        }
-    }
+	@Override
+	public void onMenuItemSelected(int menuItem) {
+		Log.v(SampleExtensionService.LOG_TAG, "onMenuItemSelected");
+		if (mCurrentControl != null) {
+			mCurrentControl.onMenuItemSelected(menuItem);
+		}
+	}
 
-    /**
-     * Closes the currently open control extension. If there is a control on the
-     * back stack it is opened, otherwise extension is closed.
-     */
-    public void onBack() {
-        Log.v(SampleExtensionService.LOG_TAG, "onBack");
-        if (!mControlStack.isEmpty()) {
-            Intent backControl = mControlStack.pop();
-            ControlExtension newControl = createControl(backControl);
-            startControl(newControl);
-        } else {
-            stopRequest();
-        }
-    }
+	/**
+	 * Closes the currently open control extension. If there is a control on the
+	 * back stack it is opened, otherwise extension is closed.
+	 */
+	public void onBack() {
+		Log.v(SampleExtensionService.LOG_TAG, "onBack");
+		if (!mControlStack.isEmpty()) {
+			Intent backControl = mControlStack.pop();
+			ControlExtension newControl = createControl(backControl);
+			startControl(newControl);
+		} else {
+//			stopRequest();
+		}
+	}
 
-    /**
-     * Start a new control. Any currently running control will be stopped and
-     * put on the control extension stack.
-     *
-     * @param intent the Intent used to create the ManagedControlExtension. The
-     *            intent must have the requested ManagedControlExtension as
-     *            component, e.g. Intent intent = new Intent(mContext,
-     *            CallLogDetailsControl.class);
-     */
-    public void startControl(Intent intent) {
-        addCurrentToControlStack();
-        ControlExtension newControl = createControl(intent);
-        startControl(newControl);
-    }
+	/**
+	 * Start a new control. Any currently running control will be stopped and
+	 * put on the control extension stack.
+	 * 
+	 * @param intent
+	 *            the Intent used to create the ManagedControlExtension. The
+	 *            intent must have the requested ManagedControlExtension as
+	 *            component, e.g. Intent intent = new Intent(mContext,
+	 *            CallLogDetailsControl.class);
+	 */
+	public void startControl(Intent intent) {
+		addCurrentToControlStack();
+		ControlExtension newControl = createControl(intent);
+		startControl(newControl);
+	}
 
-    public void addCurrentToControlStack() {
-        if (mCurrentControl != null && mCurrentControl instanceof ManagedControlExtension) {
-            Intent intent = ((ManagedControlExtension) mCurrentControl).getIntent();
-            boolean isNoHistory = intent.getBooleanExtra(
-                    ManagedControlExtension.EXTENSION_NO_HISTORY,
-                    false);
-            if (isNoHistory) {
-                // Not adding this control to history
-                Log.d(SampleExtensionService.LOG_TAG, "Not adding control to history stack");
-            } else {
-                Log.d(SampleExtensionService.LOG_TAG, "Adding control to history stack");
-                mControlStack.add(intent);
-            }
-        } else {
-            Log.w(SampleExtensionService.LOG_TAG,
-                    "ControlManageronly supports ManagedControlExtensions");
-        }
-    }
+	public void addCurrentToControlStack() {
+		if (mCurrentControl != null
+				&& mCurrentControl instanceof ManagedControlExtension) {
+			Intent intent = ((ManagedControlExtension) mCurrentControl)
+					.getIntent();
+			boolean isNoHistory = intent.getBooleanExtra(
+					ManagedControlExtension.EXTENSION_NO_HISTORY, false);
+			if (isNoHistory) {
+				// Not adding this control to history
+				Log.d(SampleExtensionService.LOG_TAG,
+						"Not adding control to history stack");
+			} else {
+				Log.d(SampleExtensionService.LOG_TAG,
+						"Adding control to history stack");
+				mControlStack.add(intent);
+			}
+		} else {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManageronly supports ManagedControlExtensions");
+		}
+	}
 
-    private ControlExtension createControl(Intent intent) {
-        ComponentName component = intent.getComponent();
-        try {
-            String className = component.getClassName();
-            Log.d(SampleExtensionService.LOG_TAG, "Class name:" + className);
-            Class<?> clazz = Class.forName(className);
-            Constructor<?> ctor = clazz.getConstructor(Context.class, String.class,
-                    ControlManagerSmartWatch2.class, Intent.class);
-            if (ctor == null) {
-                return null;
-            }
-            Object object = ctor.newInstance(new Object[] {
-                    mContext, mHostAppPackageName, this, intent
-            });
-            if (object instanceof ManagedControlExtension) {
-                return (ManagedControlExtension) object;
-            } else {
-                Log.w(SampleExtensionService.LOG_TAG,
-                        "Created object not a ManagedControlException");
-            }
+	private ControlExtension createControl(Intent intent) {
+		ComponentName component = intent.getComponent();
+		try {
+			String className = component.getClassName();
+			Log.d(SampleExtensionService.LOG_TAG, "Class name:" + className);
+			Class<?> clazz = Class.forName(className);
+			Constructor<?> ctor = clazz
+					.getConstructor(Context.class, String.class,
+							ControlManagerSmartWatch2.class, Intent.class);
+			if (ctor == null) {
+				return null;
+			}
+			Object object = ctor.newInstance(new Object[] { mContext,
+					mHostAppPackageName, this, intent });
+			if (object instanceof ManagedControlExtension) {
+				return (ManagedControlExtension) object;
+			} else {
+				Log.w(SampleExtensionService.LOG_TAG,
+						"Created object not a ManagedControlException");
+			}
 
-        } catch (SecurityException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (NoSuchMethodException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (IllegalArgumentException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (InstantiationException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (IllegalAccessException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (InvocationTargetException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        } catch (ClassNotFoundException e) {
-            Log.w(SampleExtensionService.LOG_TAG, "ControlManager: Failed in creating control", e);
-        }
-        return null;
-    }
+		} catch (SecurityException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (NoSuchMethodException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (IllegalArgumentException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (InstantiationException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (IllegalAccessException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (InvocationTargetException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		} catch (ClassNotFoundException e) {
+			Log.w(SampleExtensionService.LOG_TAG,
+					"ControlManager: Failed in creating control", e);
+		}
+		return null;
+	}
 
 }
