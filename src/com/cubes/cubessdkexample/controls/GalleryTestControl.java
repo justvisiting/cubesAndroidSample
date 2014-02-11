@@ -89,6 +89,7 @@ public class GalleryTestControl extends ManagedControlExtension {
 
     @Override
     public void onRequestListItem(final int layoutReference, final int listItemPosition) {
+    	super.onRequestListItem(layoutReference, listItemPosition);
         Log.d(SampleExtensionService.LOG_TAG, "onRequestListItem() - position " + listItemPosition);
         if (layoutReference != -1 && listItemPosition != -1 && layoutReference == R.id.gallery) {
             ControlListItem item = createControlListItem(listItemPosition);
@@ -109,6 +110,7 @@ public class GalleryTestControl extends ManagedControlExtension {
     @Override
     public void onListItemClick(final ControlListItem listItem, final int clickType,
             final int itemLayoutReference) {
+    	super.onListItemClick(listItem, clickType, itemLayoutReference);
         Log.d(SampleExtensionService.LOG_TAG, "Item clicked. Position " + listItem.listItemPosition
                 + ", itemLayoutReference " + itemLayoutReference + ". Type was: "
                 + (clickType == Control.Intents.CLICK_TYPE_SHORT ? "SHORT" : "LONG"));

@@ -92,6 +92,7 @@ public class ListControlExtension extends ManagedControlExtension {
     @Override
     public void onRequestListItem(final int layoutReference, final int listItemPosition) {
         Log.d(SampleExtensionService.LOG_TAG, "onRequestListItem() - position " + listItemPosition);
+        super.onRequestListItem(layoutReference, listItemPosition);
         if (layoutReference != -1 && listItemPosition != -1 && layoutReference == R.id.listView) {
             ControlListItem item = createControlListItem(listItemPosition);
             if (item != null) {
@@ -111,6 +112,7 @@ public class ListControlExtension extends ManagedControlExtension {
     @Override
     public void onListItemClick(final ControlListItem listItem, final int clickType,
             final int itemLayoutReference) {
+    	super.onListItemClick(listItem, clickType, itemLayoutReference);
         Log.d(SampleExtensionService.LOG_TAG, "Item clicked. Position " + listItem.listItemPosition
                 + ", itemLayoutReference " + itemLayoutReference + ". Type was: "
                 + (clickType == Control.Intents.CLICK_TYPE_SHORT ? "SHORT" : "LONG"));
