@@ -110,7 +110,10 @@ public class GalleryTestControl extends ManagedControlExtension {
     @Override
     public void onListItemClick(final ControlListItem listItem, final int clickType,
             final int itemLayoutReference) {
-    	super.onListItemClick(listItem, clickType, itemLayoutReference);
+    	if(mustInterceptActions()) {
+			super.onListItemClick(listItem, clickType, itemLayoutReference);
+			return;
+		}
         Log.d(SampleExtensionService.LOG_TAG, "Item clicked. Position " + listItem.listItemPosition
                 + ", itemLayoutReference " + itemLayoutReference + ". Type was: "
                 + (clickType == Control.Intents.CLICK_TYPE_SHORT ? "SHORT" : "LONG"));

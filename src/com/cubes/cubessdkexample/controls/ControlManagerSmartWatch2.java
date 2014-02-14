@@ -41,6 +41,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.cubes.cubesandroidsdk.smartextensions.controls.AdsControlExtension;
 import com.cubes.cubessdkexample.R;
 import com.cubes.cubessdkexample.SampleExtensionService;
 import com.sonyericsson.extras.liveware.aef.control.Control;
@@ -104,6 +105,14 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 	public void onListItemClick(ControlListItem listItem, int clickType,
 			int itemLayoutReference) {
 		Log.v(SampleExtensionService.LOG_TAG, "onListItemClick");
+		if(mCurrentControl instanceof AdsControlExtension) {
+			AdsControlExtension ext = (AdsControlExtension) mCurrentControl;
+			if(ext.mustInterceptActions()) {
+				ext.onListItemClick(listItem, clickType, itemLayoutReference);
+				return;
+			}
+		}
+		
 		if (mCurrentControl != null) {
 			mCurrentControl.onListItemClick(listItem, clickType,
 					itemLayoutReference);
@@ -140,6 +149,15 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 
 		if (action == Control.Intents.KEY_ACTION_RELEASE
 				&& keyCode == Control.KeyCodes.KEYCODE_BACK) {
+			
+			if(mCurrentControl instanceof AdsControlExtension) {
+				AdsControlExtension ext = (AdsControlExtension) mCurrentControl;
+				if(ext.mustInterceptActions()) {
+					ext.onKey(action, keyCode, timeStamp);
+					return;
+				}
+			}
+			
 			Log.d(SampleExtensionService.LOG_TAG,
 					"onKey() - back button intercepted.");
 			onBack();
@@ -167,7 +185,7 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 			ControlExtension newControl = createControl(backControl);
 			startControl(newControl);
 		} else {
-//			stopRequest();
+			stopRequest();
 		}
 	}
 
