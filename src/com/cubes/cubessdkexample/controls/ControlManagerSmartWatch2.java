@@ -95,7 +95,12 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 	
 	@Override
 	public void onTouch(ControlTouchEvent event) {
-		super.onTouch(event);
+		if(mCurrentControl instanceof AdsControlExtension) {
+			AdsControlExtension ext = (AdsControlExtension) mCurrentControl;
+			if(ext.mustInterceptActions()) {
+				ext.onTouch(event);
+			}
+		}
 	}
 
 	@Override
