@@ -48,6 +48,7 @@ import com.sonyericsson.extras.liveware.aef.control.Control;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlListItem;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlObjectClickEvent;
+import com.sonyericsson.extras.liveware.extension.util.control.ControlTouchEvent;
 
 /**
  * The phone control manager manages which control to currently show on the
@@ -90,6 +91,11 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 	public static int getSupportedControlHeight(Context context) {
 		return context.getResources().getDimensionPixelSize(
 				R.dimen.smart_watch_2_control_height);
+	}
+	
+	@Override
+	public void onTouch(ControlTouchEvent event) {
+		super.onTouch(event);
 	}
 
 	@Override
