@@ -107,6 +107,16 @@ public class ControlManagerSmartWatch2 extends ControlManagerBase {
 		Log.v(SampleExtensionService.LOG_TAG, "onListItemClick");
 		if(mCurrentControl instanceof AdsControlExtension) {
 			AdsControlExtension ext = (AdsControlExtension) mCurrentControl;
+			/**
+			 * Demo solution
+			 */
+			if(listItem.listItemPosition == 2 && mCurrentControl instanceof ListControlExtension && !ext.mustInterceptActions()) {
+				ext.showInterstitial();
+				return;
+			}
+			/**
+			 * 
+			 */
 			if(ext.mustInterceptActions()) {
 				ext.onListItemClick(listItem, clickType, itemLayoutReference);
 				return;
